@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Sentinel AI Link Security Scanner"
+    >
+
+    <title>Sentinel AI — Link Security</title>
+
+
+    <!-- =====================================================
+         GOOGLE FONTS
+    ====================================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         SENTINEL LINK CHECKER CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="link checker.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <video
+        class="video-background"
+        autoplay
+        muted
+        loop
+        playsinline
+        aria-hidden="true"
+    >
+        <source src="assets/vidssave.com NEW 4K Macro Plexus Blue Looped Background. Lines and Points Animation 60FPS Footage - Screensaver 144P.mp4" type="video/mp4">
+    </video>
+
+
+    <!-- =====================================================
+         BACKGROUND
+    ====================================================== -->
+
+    <div class="background-grid"></div>
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+
+        <!-- =================================================
+             SENTINEL LOGO
+        ================================================== -->
+
+        <div class="side-logo">
+
+            <img class="logo-icon" src="assets/sentinel-ai-logo.svg" alt="Sentinel AI logo">
+
+            <div class="logo-text">
+
+                <strong>
+                    SENTINEL
+                </strong>
+
+                <span>
+                    AI SECURITY SYSTEM
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="side-line"></div>
+
+
+        <!-- =================================================
+             NAVIGATION
+        ================================================== -->
+
+        <nav
+            class="side-nav"
+            aria-label="Main navigation"
+        >
+
+
+            <p class="nav-heading">
+                COMMAND CENTER
+            </p>
+
+
+            <!-- DASHBOARD -->
+
+            <a href="steam.html">
+
+                <span
+                    class="nav-icon"
+                    aria-hidden="true"
+                >
+                    ⌂
+                </span>
+
+                <span>
+                    🏠 Dashboard
+                </span>
+
+            </a>
+
+
+            <!-- LINK CHECKER -->
+
+            <a
+                href="link checker.html"
+                class="active"
+                aria-current="page"
+            >
+
+                <span
+                    class="nav-icon"
+                    aria-hidden="true"
+                >
+                    ⌕
+                </span>
+
+                <span>
+                    🔗 Link Checker
+                </span>
+
+            </a>
+
+
+            <!-- TRANSACTIONS -->
+
+            <a href="steam.html#transactions">
+
+                <span
+                    class="nav-icon"
+                    aria-hidden="true"
+                >
+                    ▣
+                </span>
+
+                <span>
+                    💳 Transactions
+                </span>
+
+            </a>
+
+
+            <!-- AI ASSISTANT -->
+
+            <a href="steam.html#assistant">
+
+                <span
+                    class="nav-icon"
+                    aria-hidden="true"
+                >
+                    ◉
+                </span>
+
+                <span>
+                    🤖 AI Assistant
+                </span>
+
+            </a>
+
+
+            <p class="nav-heading security-heading">
+                SECURITY
+            </p>
+
+
+        </nav>
+
+
+        <!-- =================================================
+             SIDEBAR BOTTOM
+        ================================================== -->
+
+        <div class="side-bottom">
+
+
+            <!-- SYSTEM STATUS -->
+
+            <div class="system-status">
+
+                <span
+                    class="system-dot"
+                    aria-hidden="true"
+                ></span>
+
+                <div>
+
+                    <b>
+                        SYSTEM ONLINE
+                    </b>
+
+                    <small>
+                        ALL SYSTEMS ACTIVE
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- LOGOUT -->
+
+            <button
+                type="button"
+                class="logout-btn"
+                onclick="logout()"
+            >
+
+                <span aria-hidden="true">
+                    ⇥
+                </span>
+
+                LOGOUT
+
+            </button>
+
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main>
+
+
+        <header class="topbar sentinel3-topbar">
+
+            <div class="topbar-left">
+
+                <div class="page-heading">
+
+                    <div class="page-kicker">
+                        SENTINEL AI 3
+                    </div>
+
+                    <h1>
+                        Link Security Monitor
+                    </h1>
+
+                    <p>
+                        Welcome back,
+                        <span id="userName">User</span>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="system-status">
+                    <span class="system-status-dot"></span>
+                    <div>
+                        <strong>SYSTEM ONLINE</strong>
+                        <small>ALL SYSTEMS OPERATIONAL</small>
+                    </div>
+                </div>
+
+                <div class="topbar-live">
+                    <span class="live-pulse"></span>
+                    <div>
+                        <strong>LIVE</strong>
+                        <small>MONITORING</small>
+                    </div>
+                </div>
+
+                <div class="topbar-clock">
+                    <span class="clock-label">LOCAL TIME</span>
+                    <span id="sentinelClock">--:--:--</span>
+                </div>
+
+                <div class="topbar-score">
+                    <div class="score-ring">
+                        <span id="topbarSecurityScore">100</span>
+                    </div>
+                    <div class="score-info">
+                        <span>SECURITY</span>
+                        <strong>SCORE</strong>
+                    </div>
+                </div>
+
+                <button
+                    class="topbar-icon-button ai-topbar-button"
+                    type="button"
+                    onclick="talkToAI()"
+                    title="Talk to Sentinel AI"
+                    aria-label="Talk to Sentinel AI"
+                >
+                    <span class="topbar-button-icon">◉</span>
+                </button>
+
+                <button
+                    id="themeToggleBtn"
+                    class="topbar-icon-button theme-toggle-button"
+                    type="button"
+                    title="Switch theme"
+                    aria-label="Switch to dark mode"
+                    onclick="toggleSentinelTheme()"
+                >
+                    <span class="topbar-button-icon">☀</span>
+                </button>
+
+                <button
+                    id="defaultModeBtn"
+                    class="topbar-icon-button default-mode-button"
+                    type="button"
+                    title="Return to default mode"
+                    aria-label="Return to default mode"
+                    onclick="restoreDefaultMode()"
+                >
+                    <span class="topbar-button-icon">◌</span>
+                </button>
+
+                <button
+                    class="topbar-icon-button notification-topbar-button"
+                    type="button"
+                    onclick="toggleSentinelNotifications()"
+                    title="Notifications"
+                    aria-label="Notifications"
+                >
+                    <span class="topbar-button-icon">♢</span>
+                    <span id="notificationBadge" class="notification-badge">0</span>
+                </button>
+
+                <div class="topbar-profile">
+                    <div class="profile-avatar" id="topbarProfileAvatar">U</div>
+                    <div class="profile-details">
+                        <strong id="topbarUserName">User</strong>
+                        <span>SECURITY OPERATOR</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             LINK SECURITY SCANNER
+        ================================================== -->
+
+        <section
+            class="scanner-card"
+            aria-labelledby="scannerTitle"
+        >
+
+
+            <!-- SCANNER ICON -->
+
+            <div
+                class="scanner-icon"
+                aria-hidden="true"
+            >
+                🔗
+            </div>
+
+
+            <!-- TITLE -->
+
+            <h1 id="scannerTitle">
+                Link Security Scanner
+            </h1>
+
+
+            <!-- DESCRIPTION -->
+
+            <p>
+                Analyze a URL for suspicious indicators
+                before visiting it.
+            </p>
+
+
+            <!-- =================================================
+                 URL INPUT
+            ================================================== -->
+
+            <div class="input-area">
+
+
+                <label
+                    for="urlInput"
+                    class="sr-only"
+                >
+                    Enter URL to scan
+                </label>
+
+
+                <input
+                    type="url"
+                    id="urlInput"
+                    placeholder="https://example.com"
+                    autocomplete="off"
+                    spellcheck="false"
+                    inputmode="url"
+                    aria-label="URL to scan"
+                >
+
+
+                <button
+                    type="button"
+                    id="scanButton"
+                    onclick="scanLink()"
+                >
+                    SCAN LINK
+                </button>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 SCANNER STATUS
+            ================================================== -->
+
+            <div class="checker-status-panel">
+
+
+                <div class="checker-status">
+
+
+                    <span
+                        id="checkerStatusDot"
+                        class="checker-status-dot online"
+                        aria-hidden="true"
+                    ></span>
+
+
+                    <span id="checkerStatus">
+                        ONLINE
+                    </span>
+
+
+                </div>
+
+
+                <div
+                    id="threatMode"
+                    class="threat-mode"
+                >
+                    MONITORING
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 SCANNER STATISTICS
+            ================================================== -->
+
+            <div class="scanner-stats">
+
+
+                <!-- TOTAL SCANS -->
+
+                <div class="scanner-stat">
+
+                    <span>
+                        TOTAL SCANS
+                    </span>
+
+                    <strong id="scanCount">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <!-- ENGINE -->
+
+                <div class="scanner-stat">
+
+                    <span>
+                        ENGINE
+                    </span>
+
+                    <strong>
+                        ONLINE
+                    </strong>
+
+                </div>
+
+
+                <!-- MODE -->
+
+                <div class="scanner-stat">
+
+                    <span>
+                        MODE
+                    </span>
+
+                    <strong>
+                        LOCAL AI
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 SCANNING ANIMATION
+            ================================================== -->
+
+            <div
+                id="scanAnimation"
+                class="scan-animation hidden"
+                aria-live="polite"
+            >
+
+
+                <div
+                    class="scanner-line"
+                    aria-hidden="true"
+                ></div>
+
+
+                <span>
+                    SENTINEL AI ANALYZING LINK...
+                </span>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 SCAN RESULT
+            ================================================== -->
+
+            <div
+                id="resultBox"
+                class="result-box hidden"
+                aria-live="polite"
+                aria-atomic="true"
+            >
+
+
+                <!-- RESULT ICON -->
+
+                <div
+                    id="resultIcon"
+                    class="result-icon"
+                    aria-hidden="true"
+                >
+                    ✓
+                </div>
+
+
+                <!-- RESULT TITLE -->
+
+                <h2 id="resultTitle">
+                    SAFE
+                </h2>
+
+
+                <!-- RESULT MESSAGE -->
+
+                <p id="resultText">
+                    No suspicious indicators detected.
+                </p>
+
+
+                <!-- =================================================
+                     RESULT DETAILS
+                ================================================== -->
+
+                <div class="result-details">
+
+
+                    <!-- URL -->
+
+                    <div>
+
+                        <span>
+                            URL
+                        </span>
+
+                        <b
+                            id="resultURL"
+                            title=""
+                        >
+                            -
+                        </b>
+
+                    </div>
+
+
+                    <!-- RISK SCORE -->
+
+                    <div>
+
+                        <span>
+                            RISK SCORE
+                        </span>
+
+                        <b id="riskScore">
+                            0/100
+                        </b>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         SCREEN-READER UTILITY
+    ====================================================== -->
+
+    <style>
+
+        .sr-only {
+
+            position: absolute;
+
+            width: 1px;
+            height: 1px;
+
+            padding: 0;
+            margin: -1px;
+
+            overflow: hidden;
+
+            clip: rect(0, 0, 0, 0);
+
+            white-space: nowrap;
+
+            border: 0;
+
+        }
+
+    </style>
+
+
+    <!-- =====================================================
+         SENTINEL LINK CHECKER JAVASCRIPT
+    ====================================================== -->
+
+    <script src="link checker.js"></script>
+
+
+</body>
+
+</html>

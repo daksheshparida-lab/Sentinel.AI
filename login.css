@@ -1,0 +1,912 @@
+*{
+
+    margin:0;
+    padding:0;
+
+    box-sizing:border-box;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+}
+
+.video-background{
+
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    pointer-events:none;
+    opacity:.34;
+    filter:blur(1.2px) saturate(.95) contrast(1.12) brightness(.78);
+
+}
+
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    overflow-x:hidden;
+
+    color:white;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(25, 217, 255, 0.08),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(124, 77, 255, 0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(237, 76, 255, 0.055),
+            transparent 35%
+        ),
+        #05070d;
+
+}
+
+
+/* =========================================
+   BACKGROUND GRID
+========================================= */
+
+.grid{
+
+    position:fixed;
+
+    inset:0;
+
+    opacity:.7;
+
+    background-image:
+
+        linear-gradient(
+            rgba(0,245,255,.025) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(0,245,255,.025) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        45px 45px;
+
+    animation:
+        gridMove 15s linear infinite;
+
+}
+
+
+@keyframes gridMove{
+
+    from{
+        transform:
+            translateY(0);
+    }
+
+    to{
+        transform:
+            translateY(50px);
+    }
+
+}
+
+
+/* =========================================
+   SCANNING LINE
+========================================= */
+
+.scan-line{
+
+    position:fixed;
+
+    left:0;
+
+    width:100%;
+
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #00e5ff,
+            white,
+            #00e5ff,
+            transparent
+        );
+
+    box-shadow:
+        0 0 20px #00e5ff;
+
+    opacity:.5;
+
+    animation:
+        scan 6s linear infinite;
+
+}
+
+
+@keyframes scan{
+
+    0%{
+        top:-5%;
+    }
+
+    100%{
+        top:105%;
+    }
+
+}
+
+
+/* =========================================
+   MAIN
+========================================= */
+
+.login-container{
+
+    position:relative;
+
+    z-index:2;
+
+    width:100%;
+
+    max-width:850px;
+
+    padding:40px 20px;
+
+    text-align:center;
+
+}
+
+
+/* =========================================
+   AI CORE
+========================================= */
+
+.ai-core{
+
+    position:relative;
+
+    width:150px;
+
+    height:150px;
+
+    margin:
+        0 auto 25px;
+
+}
+
+
+.core-center{
+
+    position:absolute;
+
+    inset:38px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    border-radius:50%;
+
+    font-size:42px;
+
+    background:
+        radial-gradient(
+            circle,
+            #67e8f9,
+            #087ea4 45%,
+            #020617 75%
+        );
+
+    box-shadow:
+
+        0 0 20px #00e5ff,
+        0 0 60px #00e5ff,
+        inset 0 0 30px white;
+
+    animation:
+        corePulse 2s infinite;
+
+}
+
+
+@keyframes corePulse{
+
+    50%{
+
+        transform:scale(1.08);
+
+        box-shadow:
+
+            0 0 30px #00e5ff,
+            0 0 90px #00e5ff;
+
+    }
+
+}
+
+
+.core-ring{
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:50%;
+
+    border:
+        2px solid rgba(0,229,255,.5);
+
+}
+
+
+.ring-one{
+
+    animation:
+        rotateOne 8s linear infinite;
+
+}
+
+
+.ring-two{
+
+    inset:12px;
+
+    border-style:dashed;
+
+    animation:
+        rotateTwo 5s linear infinite reverse;
+
+}
+
+
+.ring-three{
+
+    inset:24px;
+
+    border-color:
+        rgba(255,255,255,.35);
+
+    animation:
+        rotateOne 12s linear infinite;
+
+}
+
+
+@keyframes rotateOne{
+
+    to{
+        transform:
+            rotate(360deg);
+    }
+
+}
+
+
+@keyframes rotateTwo{
+
+    to{
+        transform:
+            rotate(-360deg);
+    }
+
+}
+
+
+/* =========================================
+   BRAND
+========================================= */
+
+.brand h1{
+
+    font-size:
+        clamp(32px,6vw,55px);
+
+    letter-spacing:6px;
+
+    text-shadow:
+        0 0 25px
+        rgba(0,229,255,.7);
+
+}
+
+
+.brand h1 span{
+
+    color:#00e5ff;
+
+}
+
+
+.brand p{
+
+    margin-top:8px;
+
+    color:#6ee7f9;
+
+    font-size:12px;
+
+    letter-spacing:5px;
+
+}
+
+
+/* =========================================
+   LOGIN CARD
+========================================= */
+
+.login-card{
+
+    position:relative;
+
+    width:100%;
+
+    max-width:700px;
+
+    margin:
+        35px auto 0;
+
+    padding:40px;
+
+    border-radius:30px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(7,35,53,.95),
+            rgba(1,10,18,.97)
+        );
+
+    border:
+        1px solid
+        rgba(0,229,255,.35);
+
+    box-shadow:
+
+        0 0 40px
+        rgba(0,229,255,.12),
+
+        inset 0 0 30px
+        rgba(0,229,255,.03);
+
+    backdrop-filter:
+        blur(20px);
+
+    text-align:left;
+
+}
+
+
+.login-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:30px;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 20%,
+            rgba(0,229,255,.08),
+            transparent 80%
+        );
+
+    animation:
+        hologram 4s infinite;
+
+}
+
+
+@keyframes hologram{
+
+    50%{
+        opacity:.4;
+    }
+
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.security-status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:#67e8f9;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+    margin-bottom:20px;
+
+}
+
+
+.status-dot{
+
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
+
+    background:#22c55e;
+
+    box-shadow:
+        0 0 15px #22c55e;
+
+    animation:
+        statusPulse 1.5s infinite;
+
+}
+
+
+@keyframes statusPulse{
+
+    50%{
+        transform:scale(1.7);
+        opacity:.4;
+    }
+
+}
+
+
+.login-card h2{
+
+    font-size:30px;
+
+    letter-spacing:2px;
+
+}
+
+
+.subtitle{
+
+    color:#94a3b8;
+
+    margin:
+        8px 0 25px;
+
+}
+
+
+/* =========================================
+   AUTH SWITCH
+========================================= */
+
+.auth-switch{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-bottom:25px;
+
+}
+
+
+.auth-switch button{
+
+    flex:1;
+
+    padding:13px;
+
+    border-radius:12px;
+
+    border:
+        1px solid
+        rgba(0,229,255,.25);
+
+    background:
+        rgba(0,229,255,.05);
+
+    color:#94a3b8;
+
+    cursor:pointer;
+
+}
+
+
+.auth-switch button.active{
+
+    color:white;
+
+    background:
+        rgba(0,229,255,.15);
+
+    border-color:#00e5ff;
+
+    box-shadow:
+        0 0 15px
+        rgba(0,229,255,.15);
+
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+label{
+
+    display:block;
+
+    margin:
+        15px 0 8px;
+
+    color:#67e8f9;
+
+    font-size:12px;
+
+    letter-spacing:1.5px;
+
+}
+
+
+input,
+select{
+
+    width:100%;
+
+    padding:16px;
+
+    border-radius:12px;
+
+    border:
+        1px solid
+        rgba(0,229,255,.25);
+
+    background:
+        rgba(1,10,18,.9);
+
+    color:white;
+
+    outline:none;
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+
+select option{
+
+    background:#071722;
+
+}
+
+
+input:focus,
+select:focus{
+
+    border-color:#00e5ff;
+
+    box-shadow:
+        0 0 20px
+        rgba(0,229,255,.15);
+
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.primary-btn{
+
+    width:100%;
+
+    margin-top:22px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:14px;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0891b2,
+            #2563eb
+        );
+
+    box-shadow:
+        0 0 20px
+        rgba(0,229,255,.15);
+
+    transition:.3s;
+
+}
+
+
+.primary-btn:hover{
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 0 30px
+        rgba(0,229,255,.4);
+
+}
+
+
+/* =========================================
+   OTP
+========================================= */
+
+.otp-section{
+
+    display:none;
+
+    margin-top:20px;
+
+    padding-top:20px;
+
+    border-top:
+        1px solid
+        rgba(0,229,255,.15);
+
+}
+
+
+.otp-section.show{
+
+    display:block;
+
+}
+
+
+#otpMessage,
+#passwordMessage{
+
+    margin-top:15px;
+
+    text-align:center;
+
+    color:#67e8f9;
+
+}
+
+
+/* =========================================
+   AI MESSAGE
+========================================= */
+
+.ai-message{
+
+    margin-top:25px;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    color:#a5f3fc;
+
+    background:
+        rgba(0,229,255,.06);
+
+    border-left:
+        3px solid #00e5ff;
+
+    font-size:14px;
+
+}
+
+
+/* =========================================
+   SECURITY FEATURES
+========================================= */
+
+.security-features{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+    margin-top:25px;
+
+}
+
+
+.security-features div{
+
+    padding:12px 18px;
+
+    border-radius:15px;
+
+    background:
+        rgba(0,229,255,.05);
+
+    border:
+        1px solid
+        rgba(0,229,255,.15);
+
+    color:#67e8f9;
+
+    font-size:12px;
+
+}
+
+
+.security-features span{
+
+    margin-left:5px;
+
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer{
+
+    margin-top:30px;
+
+    color:#475569;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+}
+
+
+footer span{
+
+    color:#00e5ff;
+
+}
+
+
+/* =========================================
+   HIDDEN
+========================================= */
+
+.hidden{
+
+    display:none;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:600px){
+
+    .login-container{
+
+        padding:
+            25px 12px;
+
+    }
+
+    .login-card{
+
+        padding:25px;
+
+        border-radius:22px;
+
+    }
+
+    .brand h1{
+
+        letter-spacing:3px;
+        
+    }
+
+    .security-features{
+
+        flex-direction:column;
+
+    }
+
+}
+
+/* PAGE MOTION SYSTEM */
+body::before {
+    content: "";
+    position: fixed;
+    inset: -40% 0 auto;
+    height: 55vh;
+    z-index: 5;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent, rgba(0, 229, 255, .1), transparent);
+    transform: translateY(-100%);
+    animation: loginSweep 1.6s cubic-bezier(.2, .8, .2, 1) .15s both;
+}
+
+.ai-core,
+.brand,
+.login-card,
+.security-features {
+    opacity: 0;
+    animation: loginReveal .8s cubic-bezier(.2, .8, .2, 1) forwards;
+}
+
+.ai-core { animation-delay: .1s; }
+.brand { animation-delay: .22s; }
+.login-card { animation-delay: .36s; }
+.security-features { animation-delay: .52s; }
+
+.login-card {
+    transition: transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .35s ease;
+}
+
+.login-card:hover { transform: translateY(-5px); }
+
+@keyframes loginReveal {
+    from { opacity: 0; transform: translateY(22px) scale(.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes loginSweep {
+    to { transform: translateY(290%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body::before,
+    .ai-core,
+    .brand,
+    .login-card,
+    .security-features {
+        animation: none;
+        opacity: 1;
+    }
+
+    .login-card { transition: none; }
+}

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Sentinel AI 3 | Secure Access</title>
+
+    <link rel="stylesheet"
+          href="login.css">
+
+</head>
+
+
+<body>
+
+    <video
+        class="video-background"
+        autoplay
+        muted
+        loop
+        playsinline
+        aria-hidden="true"
+    >
+        <source src="assets/vidssave.com NEW 4K Macro Plexus Blue Looped Background. Lines and Points Animation 60FPS Footage - Screensaver 144P.mp4" type="video/mp4">
+    </video>
+
+    <div class="grid"></div>
+
+    <div class="scan-line"></div>
+
+
+    <main class="login-container">
+
+
+        <!-- AI CORE -->
+
+        <div class="ai-core">
+
+            <div class="core-ring ring-one"></div>
+            <div class="core-ring ring-two"></div>
+            <div class="core-ring ring-three"></div>
+
+            <div class="core-center">
+                🛡️
+            </div>
+
+        </div>
+
+
+        <div class="brand">
+
+            <h1>SENTINEL <span>AI</span></h1>
+
+            <p>
+                AI SECURITY COMMAND SYSTEM
+            </p>
+
+        </div>
+
+
+        <!-- LOGIN CARD -->
+
+        <section class="login-card">
+
+
+            <div class="security-status">
+
+                <span class="status-dot"></span>
+
+                SENTINEL SECURITY ONLINE
+
+            </div>
+
+
+            <h2>SECURE ACCESS</h2>
+
+            <p class="subtitle">
+                Authenticate to access your security dashboard
+            </p>
+
+
+            <!-- AUTH METHOD -->
+
+            <div class="auth-switch">
+
+                <button
+                    id="phoneTab"
+                    class="active"
+                    onclick="switchAuth('phone')">
+
+                    PHONE / OTP
+
+                </button>
+
+
+                <button
+                    id="passwordTab"
+                    onclick="switchAuth('password')">
+
+                    PASSWORD
+
+                </button>
+
+            </div>
+
+
+            <!-- PHONE LOGIN -->
+
+            <div id="phoneAuth">
+
+
+                <label>
+                    COUNTRY
+                </label>
+
+                <select id="country">
+
+                    <option value="+91">
+                        🇮🇳 India (+91)
+                    </option>
+
+                    <option value="+1">
+                        🇺🇸 USA (+1)
+                    </option>
+
+                    <option value="+44">
+                        🇬🇧 UK (+44)
+                    </option>
+
+                    <option value="+61">
+                        🇦🇺 Australia (+61)
+                    </option>
+
+                    <option value="+81">
+                        🇯🇵 Japan (+81)
+                    </option>
+
+                    <option value="+971">
+                        🇦🇪 UAE (+971)
+                    </option>
+
+                </select>
+
+
+                <label>
+                    PHONE NUMBER
+                </label>
+
+                <input
+                    id="phone"
+                    type="tel"
+                    placeholder="Enter phone number"
+                    autocomplete="tel">
+
+
+                <button
+                    class="primary-btn"
+                    onclick="requestOTP()">
+
+                    GENERATE OTP
+
+                </button>
+
+
+                <div
+                    id="otpSection"
+                    class="otp-section">
+
+
+                    <label>
+                        ENTER OTP
+                    </label>
+
+                    <input
+                        id="otp"
+                        type="text"
+                        inputmode="numeric"
+                        maxlength="6"
+                        placeholder="6-digit OTP">
+
+
+                    <button
+                        class="primary-btn"
+                        onclick="verifyOTP()">
+
+                        ENTER SYSTEM
+
+                    </button>
+
+
+                    <p id="otpMessage"></p>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- PASSWORD LOGIN -->
+
+            <div
+                id="passwordAuth"
+                class="hidden">
+
+
+                <label>
+                    USERNAME
+                </label>
+
+                <input
+                    id="username"
+                    type="text"
+                    placeholder="Enter username"
+                    autocomplete="username">
+
+
+                <label>
+                    PASSWORD
+                </label>
+
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="Enter password"
+                    autocomplete="current-password">
+
+
+                <button
+                    class="primary-btn"
+                    onclick="passwordLogin()">
+
+                    ACCESS SENTINEL
+
+                </button>
+
+
+                <p id="passwordMessage"></p>
+
+
+            </div>
+
+
+            <!-- AI MESSAGE -->
+
+            <div
+                id="aiMessage"
+                class="ai-message">
+
+                🤖 Sentinel AI is ready for authentication.
+
+            </div>
+
+
+        </section>
+
+
+        <!-- SECURITY FEATURES -->
+
+        <div class="security-features">
+
+            <div>
+                🔐
+                <span>MFA READY</span>
+            </div>
+
+            <div>
+                🛡️
+                <span>AI PROTECTED</span>
+            </div>
+
+            <div>
+                ⚡
+                <span>REAL-TIME MONITORING</span>
+            </div>
+
+        </div>
+
+
+        <footer>
+
+            SENTINEL AI 3
+            <span>•</span>
+            SECURE DIGITAL DEFENSE
+
+        </footer>
+
+
+    </main>
+
+
+    <script src="login.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,2087 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Sentinel AI 3 | Command Center</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="steam.css">
+
+    <!-- Chart.js for spending graph -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+
+<body>
+
+
+<video
+    class="video-background"
+    autoplay
+    muted
+    loop
+    playsinline
+    aria-hidden="true"
+>
+    <source src="assets/vidssave.com NEW 4K Macro Plexus Blue Looped Background. Lines and Points Animation 60FPS Footage - Screensaver 144P.mp4" type="video/mp4">
+</video>
+
+
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
+<div class="background-grid"></div>
+
+<div class="scan-beam"></div>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+
+    <div class="side-logo">
+
+    <img class="logo-icon" src="assets/sentinel-ai-logo.svg" alt="Sentinel AI logo">
+
+    <div class="logo-text">
+        <strong>SENTINEL</strong>
+        <span>AI SECURITY SYSTEM</span>
+    </div>
+
+</div>
+
+
+    <nav>
+
+        <a href="#dashboard" class="nav-link active">
+            🏠
+            <span>Dashboard</span>
+        </a>
+
+        <a href="#transactions" class="nav-link">
+            💳
+            <span>Transactions</span>
+        </a>
+
+        <a href="#analytics" class="nav-link">
+            📊
+            <span>Analytics</span>
+        </a>
+
+        <a href="#assistant" class="nav-link">
+            🤖
+            <span>AI Assistant</span>
+        </a>
+
+        <a href="#security" class="nav-link">
+            🛡️
+            <span>Security</span>
+        </a>
+
+        <a href="link checker.html" class="nav-link">
+            🔗
+            <span>Link Checker</span>
+        </a>
+
+        <a href="qr code.html" class="nav-link">
+            📷
+            <span>QR Code</span>
+        </a>
+
+    </nav>
+
+    <button
+            class="logout-btn"
+            onclick="logout()">
+
+            <span>⇥</span>
+            LOGOUT
+
+        </button>
+
+
+
+    <div class="sidebar-bottom">
+
+        
+
+    </div>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main class="main">
+
+<header class="topbar sentinel3-topbar">
+
+    <!-- LEFT -->
+    <div class="topbar-left">
+
+        <div class="page-heading">
+
+            <div class="page-kicker">
+                SENTINEL AI 3
+            </div>
+
+            <h1>
+                Security Command Center
+            </h1>
+
+            <p>
+                Welcome back,
+                <span id="userName">steam</span>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT -->
+    <div class="topbar-right">
+
+        <!-- SYSTEM STATUS -->
+        <div class="system-status">
+
+            <span class="system-status-dot"></span>
+
+            <div>
+                <strong>SYSTEM ONLINE</strong>
+                <small>ALL SYSTEMS OPERATIONAL</small>
+            </div>
+
+        </div>
+
+
+        <!-- LIVE MONITORING -->
+        <div class="topbar-live">
+
+            <span class="live-pulse"></span>
+
+            <div>
+                <strong>LIVE</strong>
+                <small>MONITORING</small>
+            </div>
+
+        </div>
+
+
+        <!-- CLOCK -->
+        <div class="topbar-clock">
+
+            <span class="clock-label">
+                LOCAL TIME
+            </span>
+
+            <span id="sentinelClock">
+                --:--:--
+            </span>
+
+        </div>
+
+
+        <!-- SECURITY SCORE -->
+        <div class="topbar-score">
+
+            <div class="score-ring">
+
+                <span id="topbarSecurityScore">
+                    100
+                </span>
+
+            </div>
+
+            <div class="score-info">
+
+                <span>
+                    SECURITY
+                </span>
+
+                <strong>
+                    SCORE
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- AI -->
+        <button
+            class="topbar-icon-button ai-topbar-button"
+            onclick="talkToAI()"
+            title="Talk to Sentinel AI"
+        >
+
+            <span class="topbar-button-icon">
+                ◉
+            </span>
+
+        </button>
+
+        <!-- THEME SWITCH -->
+        <button
+            id="themeToggleBtn"
+            class="topbar-icon-button theme-toggle-button"
+            type="button"
+            title="Switch theme"
+            aria-label="Switch to dark mode"
+            onclick="toggleSentinelTheme()"
+        >
+            <span class="topbar-button-icon">☀</span>
+        </button>
+
+        <!-- DEFAULT MODE -->
+        <button
+            id="defaultModeBtn"
+            class="topbar-icon-button default-mode-button"
+            type="button"
+            title="Return to default mode"
+            aria-label="Return to default mode"
+            onclick="restoreDefaultMode()"
+        >
+            <span class="topbar-button-icon">◌</span>
+        </button>
+
+
+        <!-- NOTIFICATIONS -->
+        <button
+            class="topbar-icon-button notification-topbar-button"
+            onclick="toggleSentinelNotifications()"
+            title="Notifications"
+        >
+
+            <span class="topbar-button-icon">
+                ♢
+            </span>
+
+            <span
+                id="notificationBadge"
+                class="notification-badge"
+            >
+                0
+            </span>
+
+        </button>
+
+        <!-- PROFILE -->
+        <div class="topbar-profile">
+
+            <div
+                class="profile-avatar"
+                id="topbarProfileAvatar"
+            >
+                U
+            </div>
+
+            <div class="profile-details">
+
+                <strong id="topbarUserName">
+                    steam
+                </strong>
+
+                <span>
+                    SECURITY OPERATOR
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+    <!-- =================================================
+         SECURITY HERO
+    ================================================= -->
+
+    <section
+        id="dashboard"
+        class="hero-panel panel">
+
+
+        <div class="hero-info">
+
+
+            <div class="hero-label">
+
+                🛡️ SENTINEL AI CORE
+
+            </div>
+
+
+            <h2>
+                YOUR DIGITAL
+                <span>DEFENSE SYSTEM</span>
+            </h2>
+
+
+            <p>
+
+                Sentinel continuously analyzes your
+                transactions, links and security events
+                for suspicious behaviour.
+
+            </p>
+
+
+            <div class="hero-status">
+
+                <span class="pulse"></span>
+
+                AI PROTECTION ACTIVE
+
+            </div>
+
+
+        </div>
+
+
+        <!-- CORE -->
+
+        <div class="sentinel-core">
+
+            <div class="orbit orbit-1"></div>
+
+            <div class="orbit orbit-2"></div>
+
+            <div class="orbit orbit-3"></div>
+
+            <div class="core">
+
+                🛡️
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =================================================
+         SECURITY CARDS
+    ================================================= -->
+
+    <section class="stats-grid">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🛡️
+            </div>
+
+            <p>SECURITY SCORE</p>
+
+            <h2 id="securityScore">
+                100%
+            </h2>
+
+            <span class="positive">
+                ● PROTECTED
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                💰
+            </div>
+
+            <p>AVERAGE TRANSACTION</p>
+
+            <h2 id="average">
+                ₹0
+            </h2>
+
+            <span>
+                AI LEARNING
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🚨
+            </div>
+
+            <p>THREATS DETECTED</p>
+
+            <h2 id="threatCount">
+                0
+            </h2>
+
+            <span>
+                MONITORED
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🔗
+            </div>
+
+            <p>LINKS SCANNED</p>
+
+            <h2 id="linksScanned">
+                0
+            </h2>
+
+            <span>
+                PHISHING DEFENSE
+            </span>
+
+        </div>
+
+
+    </section>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>SENTINEL AI — Global Threat Map</title>
+
+    <!-- =========================================================
+         GOOGLE FONT
+    ========================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- =========================================================
+         D3
+    ========================================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+    <!-- =========================================================
+         TOPOJSON
+    ========================================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+
+    <link
+        rel="stylesheet"
+        href="global-threat-map.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- =========================================================
+         BACKGROUND
+    ========================================================== -->
+
+    <div class="background-grid"></div>
+
+    <div class="ambient-glow glow-one"></div>
+    <div class="ambient-glow glow-two"></div>
+
+    <!-- =========================================================
+         MAIN APPLICATION
+    ========================================================== -->
+
+    <main class="sentinel-map-app">
+
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
+
+        <header class="map-header">
+
+            <div class="brand-area">
+
+                <div class="brand-icon">
+                    S
+                </div>
+
+                <div>
+
+                    <div class="brand-name">
+                        SENTINEL AI
+                    </div>
+
+                    <div class="brand-subtitle">
+                        GLOBAL SECURITY INTELLIGENCE
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="header-status">
+
+                <span class="status-light"></span>
+
+                <span id="systemStatus">
+                    SYSTEM ONLINE
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================================
+             TITLE
+        ====================================================== -->
+
+        <section class="title-section">
+
+            <div>
+
+                <div class="eyebrow">
+                    THREAT INTELLIGENCE NETWORK
+                </div>
+
+                <h1>
+                    Global Threat Map
+                </h1>
+
+                <p>
+                    Worldwide security telemetry visualization
+                </p>
+
+            </div>
+
+            <div class="live-indicator">
+
+                <span class="live-dot"></span>
+
+                LIVE MONITORING
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             STATISTICS
+        ====================================================== -->
+
+        <section class="map-stats">
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    ACTIVE THREATS
+                </span>
+
+                <strong id="activeThreats">
+                    0
+                </strong>
+
+                <small>
+                    CURRENT NETWORK
+                </small>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    HIGH RISK
+                </span>
+
+                <strong id="highRisk">
+                    0
+                </strong>
+
+                <small>
+                    PRIORITY EVENTS
+                </small>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    MONITORED LOCATIONS
+                </span>
+
+                <strong id="monitoredLocations">
+                    0
+                </strong>
+
+                <small>
+                    GLOBAL NODES
+                </small>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    NETWORK SCORE
+                </span>
+
+                <strong id="networkScore">
+                    0%
+                </strong>
+
+                <small>
+                    SECURITY HEALTH
+                </small>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             MAP PANEL
+        ====================================================== -->
+
+        <section class="map-panel">
+
+            <!-- MAP TOP BAR -->
+
+            <div class="map-panel-header">
+
+                <div class="panel-title">
+
+                    <div class="panel-icon">
+                        🌐
+                    </div>
+
+                    <div>
+
+                        <span>
+                            GLOBAL SECURITY INTELLIGENCE
+                        </span>
+
+                        <h2>
+                            Worldwide Threat Network
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="map-controls">
+
+                    <button
+                        id="zoomIn"
+                        class="map-control"
+                        type="button"
+                    >
+                        +
+                    </button>
+
+                    <button
+                        id="zoomOut"
+                        class="map-control"
+                        type="button"
+                    >
+                        −
+                    </button>
+
+                    <button
+                        id="resetMap"
+                        class="map-control reset"
+                        type="button"
+                    >
+                        RESET
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- MAP -->
+
+            <div
+                id="mapContainer"
+                class="map-container"
+            >
+
+                <svg
+                    id="sentinelWorldMap"
+                    class="world-map"
+                    viewBox="0 0 1200 650"
+                    preserveAspectRatio="xMidYMid meet"
+                ></svg>
+
+
+                <!-- MAP OVERLAY -->
+
+                <div class="map-overlay top-left">
+
+                    <span>
+                        NETWORK STATUS
+                    </span>
+
+                    <strong id="mapNetworkStatus">
+                        MONITORING
+                    </strong>
+
+                </div>
+
+
+                <div class="map-overlay top-right">
+
+                    <span>
+                        THREAT LEVEL
+                    </span>
+
+                    <strong id="globalThreatLevel">
+                        MODERATE
+                    </strong>
+
+                </div>
+
+
+                <!-- LEGEND -->
+
+                <div class="map-legend">
+
+                    <div class="legend-title">
+                        THREAT CLASSIFICATION
+                    </div>
+
+                    <div class="legend-item">
+
+                        <span class="legend-dot safe"></span>
+
+                        <span>
+                            SAFE
+                        </span>
+
+                    </div>
+
+                    <div class="legend-item">
+
+                        <span class="legend-dot monitor"></span>
+
+                        <span>
+                            MONITOR
+                        </span>
+
+                    </div>
+
+                    <div class="legend-item">
+
+                        <span class="legend-dot high"></span>
+
+                        <span>
+                            HIGH RISK
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TOOLTIP -->
+
+                <div
+                    id="mapTooltip"
+                    class="map-tooltip"
+                >
+
+                    <div
+                        id="tooltipCity"
+                        class="tooltip-city"
+                    >
+                        Location
+                    </div>
+
+                    <div
+                        id="tooltipCountry"
+                        class="tooltip-country"
+                    >
+                        Country
+                    </div>
+
+                    <div class="tooltip-divider"></div>
+
+                    <div class="tooltip-row">
+
+                        <span>
+                            RISK
+                        </span>
+
+                        <strong id="tooltipRisk">
+                            0%
+                        </strong>
+
+                    </div>
+
+                    <div class="tooltip-row">
+
+                        <span>
+                            STATUS
+                        </span>
+
+                        <strong id="tooltipStatus">
+                            SAFE
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MAP CROSSHAIR -->
+
+                <div class="map-crosshair crosshair-one"></div>
+                <div class="map-crosshair crosshair-two"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SELECTED LOCATION
+        ====================================================== -->
+
+        <section class="location-panel">
+
+            <div class="selected-location">
+
+                <div class="location-marker-large">
+                    ●
+                </div>
+
+                <div>
+
+                    <span>
+                        SELECTED NODE
+                    </span>
+
+                    <h2 id="selectedLocation">
+                        No location selected
+                    </h2>
+
+                    <p id="selectedDescription">
+                        Select a threat location on the map
+                        to inspect its telemetry.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="location-metrics">
+
+                <div>
+
+                    <span>
+                        RISK
+                    </span>
+
+                    <strong id="selectedRisk">
+                        --%
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        STATUS
+                    </span>
+
+                    <strong id="selectedStatus">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        EVENTS
+                    </span>
+
+                    <strong id="selectedEvents">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        LAST UPDATE
+                    </span>
+
+                    <strong id="selectedUpdate">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             EVENT TERMINAL
+        ====================================================== -->
+
+        <section class="event-panel">
+
+            <div class="event-header">
+
+                <div>
+
+                    <span>
+                        SECURITY TELEMETRY
+                    </span>
+
+                    <h2>
+                        Live Event Stream
+                    </h2>
+
+                </div>
+
+                <div class="terminal-status">
+
+                    <span></span>
+
+                    STREAM ACTIVE
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="eventStream"
+                class="event-stream"
+            ></div>
+
+        </section>
+
+        <!-- =========================================================
+     THREAT PERSONA + PROPAGATION SIMULATOR
+========================================================== -->
+
+<section class="threat-intelligence-panel">
+
+    <!-- THREAT PERSONA -->
+
+    <div class="persona-card">
+
+        <div class="intel-header">
+
+            <div>
+                <span>THREAT IDENTITY ENGINE</span>
+                <h2>🎭 Threat Persona</h2>
+            </div>
+
+            <div class="persona-id" id="personaId">
+                PHX-0000
+            </div>
+
+        </div>
+
+        <div class="persona-grid">
+
+            <div class="persona-item">
+                <span>THREAT TYPE</span>
+                <strong id="personaThreatType">--</strong>
+            </div>
+
+            <div class="persona-item">
+                <span>ORIGIN</span>
+                <strong id="personaOrigin">--</strong>
+            </div>
+
+            <div class="persona-item">
+                <span>REGION</span>
+                <strong id="personaRegion">--</strong>
+            </div>
+
+            <div class="persona-item">
+                <span>SEVERITY</span>
+                <strong id="personaSeverity">--</strong>
+            </div>
+
+            <div class="persona-item">
+                <span>CONFIDENCE</span>
+                <strong id="personaConfidence">--</strong>
+            </div>
+
+            <div class="persona-item">
+                <span>ACTIVITY PATTERN</span>
+                <strong id="personaActivity">--</strong>
+            </div>
+
+            <div class="persona-item">
+                <span>TARGET CATEGORY</span>
+                <strong id="personaTarget">--</strong>
+            </div>
+
+            <div class="persona-item">
+                <span>PROPAGATION POTENTIAL</span>
+                <strong id="personaPropagation">--</strong>
+            </div>
+
+        </div>
+
+        <!-- THREAT DNA -->
+
+        <div class="threat-dna">
+
+            <div class="dna-title">
+                THREAT DNA
+            </div>
+
+            <div class="dna-row">
+
+                <span>SEVERITY</span>
+
+                <div class="dna-track">
+                    <div
+                        id="dnaSeverity"
+                        class="dna-fill"
+                    ></div>
+                </div>
+
+                <strong id="dnaSeverityValue">0%</strong>
+
+            </div>
+
+
+            <div class="dna-row">
+
+                <span>ACTIVITY</span>
+
+                <div class="dna-track">
+                    <div
+                        id="dnaActivity"
+                        class="dna-fill"
+                    ></div>
+                </div>
+
+                <strong id="dnaActivityValue">0%</strong>
+
+            </div>
+
+
+            <div class="dna-row">
+
+                <span>PERSISTENCE</span>
+
+                <div class="dna-track">
+                    <div
+                        id="dnaPersistence"
+                        class="dna-fill"
+                    ></div>
+                </div>
+
+                <strong id="dnaPersistenceValue">0%</strong>
+
+            </div>
+
+
+            <div class="dna-row">
+
+                <span>PROPAGATION</span>
+
+                <div class="dna-track">
+                    <div
+                        id="dnaPropagation"
+                        class="dna-fill"
+                    ></div>
+
+                </div>
+
+                <strong id="dnaPropagationValue">0%</strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+   
+        
+
+
+        
+
+
+       
+
+            
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+        <!-- =====================================================
+             FOOTER
+        ====================================================== -->
+
+        <footer class="map-footer">
+
+            <span>
+                SENTINEL AI SECURITY PLATFORM
+            </span>
+
+            <span>
+                GLOBAL NETWORK VISUALIZATION
+            </span>
+
+            <span id="lastUpdate">
+                LAST UPDATE: --
+            </span>
+
+        </footer>
+
+    </main>
+
+
+    <script src="global-threat-map.js"></script>
+
+</body>
+</html>
+
+    
+
+
+    <!-- =================================================
+         AI STATUS
+    ================================================= -->
+
+    <section class="status-panel panel">
+
+
+        <div class="status-heading">
+
+            <div class="status-icon">
+                🤖
+            </div>
+
+            <div>
+
+                <p>SENTINEL AI DECISION ENGINE</p>
+
+                <h2 id="aiStatus">
+                    SYSTEM READY
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="risk-display">
+
+
+            <div>
+
+                <span>RISK</span>
+
+                <strong id="risk">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>CONFIDENCE</span>
+
+                <strong id="confidence">
+                    100%
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="progress-container">
+
+            <div
+                id="riskBar"
+                class="risk-bar">
+            </div>
+
+        </div>
+
+
+        <div
+            id="voiceText"
+            class="voice-text">
+
+            "Sentinel AI is monitoring your account."
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =================================================
+         TRANSACTION ANALYZER
+    ================================================= -->
+
+    <section
+        id="transactions"
+        class="transaction-section panel">
+
+
+        <div class="section-title">
+
+            <div>
+
+                <p>TRANSACTION INTELLIGENCE</p>
+
+                <h2>Analyze Payment</h2>
+
+            </div>
+
+            <span class="section-code">
+                ENGINE / TX-01
+            </span>
+
+        </div>
+
+
+        <div class="transaction-form">
+
+
+            <div class="input-group">
+
+                <label>
+                    MERCHANT
+                </label>
+
+                <input
+                    id="merchant"
+                    type="text"
+                    placeholder="e.g. Amazon">
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    AMOUNT
+                </label>
+
+                <input
+                    id="amount"
+                    type="number"
+                    placeholder="Enter amount">
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    LOCATION
+                </label>
+
+                <input
+                    id="location"
+                    type="text"
+                    placeholder="e.g. Mumbai">
+
+            </div>
+
+
+            <button
+                class="scan-button"
+                onclick="analyzeTransaction()">
+
+                <span>⚡</span>
+
+                ANALYZE TRANSACTION
+
+            </button>
+
+
+        </div>
+
+
+        <!-- VERIFICATION -->
+
+        <div
+            id="verifyBox"
+            class="verification-box">
+
+
+            <div class="verification-icon">
+                ⚠️
+            </div>
+
+
+            <div>
+
+                <h3>
+                    VERIFICATION REQUIRED
+                </h3>
+
+                <p>
+                    Sentinel detected unusual
+                    transaction behaviour.
+                </p>
+
+            </div>
+
+
+            <div class="verification-buttons">
+
+                <button
+                    onclick="userConfirmed()">
+
+                    ✅ CONFIRM
+
+                </button>
+
+
+                <button
+                    onclick="userRejected()">
+
+                    🚫 REJECT
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- FALSE POSITIVE -->
+
+        <div
+            id="falsePositiveBox"
+            class="false-positive-box">
+
+
+            <div class="fp-header">
+
+                <div class="fp-icon">
+                    🛡️
+                </div>
+
+                <div>
+
+                    <h3>
+                        UNUSUAL TRANSACTION
+                    </h3>
+
+                    <p>
+                        This may be legitimate.
+                        Additional confirmation required.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="fpDetails"
+                class="fp-details">
+            </div>
+
+
+            <div class="fp-warning">
+
+                ⚠️ Unusual does not automatically
+                mean fraudulent.
+
+            </div>
+
+
+            <div class="fp-buttons">
+
+                <button
+                    onclick="confirmLegitimateTransaction()">
+
+                    ✅ THIS WAS ME
+
+                </button>
+
+
+                <button
+                    onclick="rejectSuspiciousTransaction()">
+
+                    🚫 THIS WAS NOT ME
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =================================================
+         ANALYTICS
+    ================================================= -->
+
+    <section
+        id="analytics"
+        class="analytics-grid">
+
+
+        <div class="chart-panel panel">
+
+
+            <div class="section-title">
+
+                <div>
+
+                    <p>BEHAVIOURAL ANALYSIS</p>
+
+                    <h2>Spending Pattern</h2>
+
+                </div>
+
+                <span>
+                    LIVE DATA
+                </span>
+
+            </div>
+
+
+            <div class="chart-container">
+
+                <canvas id="spendingChart"></canvas>
+
+            </div>
+
+
+        </div>
+
+        
+
+
+        <!-- SECURITY LEVEL -->
+
+        <div
+            id="security"
+            class="security-panel panel">
+
+
+            <div class="section-title">
+
+                <div>
+
+                    <p>THREAT ANALYSIS</p>
+
+                    <h2>Security Health</h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="security-circle">
+
+                <div>
+
+                    <strong id="securityCircleScore">
+                        100
+                    </strong>
+
+                    <span>
+                        SCORE
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="security-list">
+
+                <div>
+                    <span>Transaction AI</span>
+                    <b>ONLINE</b>
+                </div>
+
+                <div>
+                    <span>Phishing Defense</span>
+                    <b>ONLINE</b>
+                </div>
+
+                <div>
+                    <span>Behaviour Monitor</span>
+                    <b>ONLINE</b>
+                </div>
+
+                <div>
+                    <span>Authentication</span>
+                    <b>ACTIVE</b>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <section class="panel security-command-panel">
+
+    <div class="section-title">
+
+        <div>
+
+            <p>REAL-TIME DEFENSE</p>
+
+            <h2>Security Command Center</h2>
+
+        </div>
+
+        <span id="securityHeartbeat">
+            SYSTEM HEARTBEAT
+        </span>
+
+    </div>
+
+
+    <div class="command-status">
+
+        <div class="command-indicator"
+             id="threatIndicator"></div>
+
+        <div>
+
+            <span>THREAT LEVEL</span>
+
+            <strong id="threatLevel">
+                LOW
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div id="securityTimeline"
+         class="security-events">
+
+    </div>
+
+</section>
+
+
+<!-- =================================================
+     LIVE SECURITY ANALYTICS
+================================================= -->
+
+<section class="live-security-grid">
+
+    <!-- THREAT ACTIVITY -->
+    <div class="panel live-chart-card">
+
+        <div class="section-title">
+            <div>
+                <p>REAL-TIME TELEMETRY</p>
+                <h2>Threat Activity</h2>
+            </div>
+
+            <span class="chart-live">
+                ● LIVE
+            </span>
+        </div>
+
+        <div class="live-chart-container">
+            <canvas id="threatActivityChart"></canvas>
+        </div>
+
+        <div class="chart-footer">
+            <span>THREATS / MIN</span>
+            <strong id="threatRate">0</strong>
+        </div>
+
+    </div>
+
+
+    <!-- AI SECURITY SCORE -->
+    <div class="panel live-chart-card">
+
+        <div class="section-title">
+            <div>
+                <p>AI DEFENSE ENGINE</p>
+                <h2>Security Score</h2>
+            </div>
+
+            <span class="chart-live">
+                ● ACTIVE
+            </span>
+        </div>
+
+        <div class="live-chart-container">
+            <canvas id="securityScoreChart"></canvas>
+        </div>
+
+        <div class="chart-footer">
+            <span>CURRENT SCORE</span>
+            <strong id="liveSecurityScore">100%</strong>
+        </div>
+
+    </div>
+
+
+    <!-- NETWORK ACTIVITY -->
+    <div class="panel live-chart-card">
+
+        <div class="section-title">
+            <div>
+                <p>NETWORK TELEMETRY</p>
+                <h2>Link Activity</h2>
+            </div>
+
+            <span class="chart-live">
+                ● SCANNING
+            </span>
+        </div>
+
+        <div class="live-chart-container">
+            <canvas id="linkActivityChart"></canvas>
+        </div>
+
+        <div class="chart-footer">
+            <span>LINKS / MIN</span>
+            <strong id="linkRate">0</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+              
+
+
+
+    <!-- =================================================
+         AI ASSISTANT
+    ================================================= -->
+
+    <section
+        id="assistant"
+        class="assistant-panel panel">
+
+
+        <div class="assistant-header">
+
+
+            <div class="assistant-avatar">
+
+                🤖
+
+            </div>
+
+
+            <div>
+
+                <p>SENTINEL AI ASSISTANT</p>
+
+                <h2>
+                    Transaction Intelligence
+                </h2>
+
+            </div>
+
+
+            <span class="assistant-online">
+
+                ● ONLINE
+
+            </span>
+
+
+        </div>
+
+
+        <div
+            id="assistantMessages"
+            class="assistant-messages">
+
+
+            <div class="ai-message-bubble">
+
+                🤖 Hello. I'm Sentinel AI.
+
+                <br><br>
+
+                Ask me about your transaction history,
+                spending patterns or security status.
+
+            </div>
+
+
+        </div>
+
+
+        <div class="assistant-input">
+
+
+            <input
+                id="assistantInput"
+                type="text"
+                placeholder="Ask Sentinel about your transactions..."
+                onkeydown="handleAssistantKey(event)">
+
+
+            <button
+                onclick="askSentinel()">
+
+                ➤
+
+            </button>
+
+
+        </div>
+
+
+        <div class="quick-questions">
+
+
+            <button
+                onclick="quickAsk('highest')">
+
+                Highest transaction
+
+            </button>
+
+
+            <button
+                onclick="quickAsk('average')">
+
+                Average spending
+
+            </button>
+
+
+            <button
+                onclick="quickAsk('blocked')">
+
+                Blocked payments
+
+            </button>
+
+
+            <button
+                onclick="quickAsk('latest')">
+
+                Latest transaction
+
+            </button>
+
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =================================================
+     LINK SECURITY MONITOR
+================================================= -->
+
+<section class="panel link-security-panel">
+
+    <div class="section-title">
+
+        <div>
+            <p>WEB DEFENSE</p>
+            <h2>Link Security Monitor</h2>
+        </div>
+
+        <span id="linkMonitorStatus">
+            SCANNER ONLINE
+        </span>
+
+    </div>
+
+
+    <!-- LINK INFORMATION CARDS -->
+
+    <div class="link-security-cards">
+
+
+        <!-- LAST SCANNED LINK -->
+
+        <div class="link-security-card">
+
+            <div class="link-security-icon">
+                🔗
+            </div>
+
+            <div class="link-security-info">
+
+                <span>
+                    LAST SCANNED LINK
+                </span>
+
+                <strong id="lastScannedLink">
+                    No link scanned
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- LINK STATUS -->
+
+        <div class="link-security-card">
+
+            <div class="link-security-icon">
+                🛡️
+            </div>
+
+            <div class="link-security-info">
+
+                <span>
+                    SCAN STATUS
+                </span>
+
+                <strong id="lastLinkStatus">
+                    WAITING
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- SCANNER STATUS -->
+
+        <div class="link-security-card">
+
+            <div class="link-security-icon">
+                ⚡
+            </div>
+
+            <div class="link-security-info">
+
+                <span>
+                    DEFENSE ENGINE
+                </span>
+
+                <strong>
+                    ONLINE
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- LINK SCAN HISTORY -->
+
+    <div class="link-history-title">
+
+        <span>
+            RECENT LINK EVENTS
+        </span>
+
+        <div class="link-history-actions">
+
+            <small>
+                LIVE
+            </small>
+
+            <button
+                type="button"
+                id="deleteLinkHistoryButton"
+                onclick="clearLinkSecurityHistory()"
+                aria-label="Delete link security history"
+            >
+                DELETE HISTORY
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="link-history"
+        id="linkSecurityHistory">
+
+        <div class="link-empty">
+            No link-security events yet.
+        </div>
+
+    </div>
+
+</section>
+
+    
+
+    <!-- =================================================
+         TRANSACTION HISTORY
+    ================================================= -->
+
+    <section class="history-section panel">
+
+
+        <div class="section-title">
+
+
+            <div>
+
+                <p>ACTIVITY LOG</p>
+
+                <h2>Transaction History</h2>
+
+            </div>
+
+
+            <button
+                class="clear-button"
+                onclick="clearTransactions()">
+
+                🗑 CLEAR HISTORY
+
+            </button>
+
+
+        </div>
+
+
+        <div
+            id="transactionList"
+            class="transaction-list">
+
+            <!-- Transactions inserted by steam.js -->
+
+        </div>
+
+
+    </section>
+
+    
+
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================= -->
+
+    <footer>
+
+        <div>
+
+            <strong>
+                SENTINEL AI 3
+            </strong>
+
+            <span>
+                DIGITAL DEFENSE SYSTEM
+            </span>
+
+        </div>
+
+
+        <div>
+
+            AI ENGINE:
+            <b>ONLINE</b>
+
+            &nbsp; | &nbsp;
+
+            SECURITY:
+            <b>ACTIVE</b>
+
+        </div>
+
+    </footer>
+
+
+</main>
+
+
+<script src="steam.js"></script>
+
+</body>
+
+</html>
